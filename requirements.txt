@@ -3,3 +3,4 @@ requests==2.7.0
 Flask_RESTful==0.3.4
 luqum==0.11.0
 Flask==0.10.1
+gunicorn
