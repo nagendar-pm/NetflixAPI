@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="height: 55vh;" class="jumbotron ui-widget">
+    <h2 style="text-align: center;padding: 20px;">Search Netflix based on Genre!</h2>
+    <h4 style="text-align: center;padding: 20px;">Your query should be boolean i.e different types of genre seperated by "and" or "or" words with some parentheses "()"</h4>
+    <h5 style="text-align: center;padding: 20px;">Words of the query should be seperated by spaces!! Else you will punished with no results!!</h5>
+    
+    <form action="{{ url_for('genre')}}" method="post">
+    <div style="position:absolute; left: 40%;top: 50%">
+        <input id="source" name = "inp" placeholder="Boolean query of Genres"/>
+        <button type="submit" style="position: absolute; top: 0%;left: 120%" class="btn btn-primary">Submit</button>
+    </div>
+    </form>
+    <div style="position: absolute; left: 20%;top: 60%">
+	    {% if error %}
+	        <div class="alert alert-danger">
+			  <strong>Danger!</strong> Please provide spaces!!
+			</div>
+        {% elif value %}
+	        <table>
+		        <tr>
+			        <th>Name</th>
+			        <th>Genre</th>
+		        </tr>
+			{% for val in value %}
+			<tr>
+				<td><a href="{{ val['url'] }}">{{ val['name'] }}</a></td>
+				<td>{{ val['listed_in'] }}</td>
+			</tr>
+			{% endfor %}
+			</table>
+        {% else %}
+            <p></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+

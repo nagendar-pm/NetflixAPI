@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="height: 55vh;" class="jumbotron ui-widget">
+    <h2 style="text-align: center;padding: 20px;">Search Netflix - Customise Queries</h2>
+        <a href="{{ url_for('customField')}}" style="position: absolute; top: 30%;left: 40%" class="btn btn-primary">Field Based Queries</a>
+	    <a href="{{ url_for('customPre') }}" style="position: absolute; top: 30%;left: 55%" class="btn btn-primary">Prefix for Description</a>
+		<a href="{{ url_for('genre') }}" style="position: absolute; top: 40%;left: 48%" class="btn btn-primary">Genre based Boolean</a>
+</div>
+{% endblock %}
+

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="height: 55vh;" class="jumbotron ui-widget">
+    <h2 style="text-align: center;padding: 20px;">Explore different pages of Netflix</h2>
+    <h4 style="text-align: center;padding: 20px;">Pages are sorted in Descending Order of Release Year!</h4>
+    
+    <form action="{{ url_for('getPage')}}" method="post">
+    <div style="position:absolute; left: 30%;top: 40%">
+	    <select id="pageType" name = "type">
+	      <option value="Movie">Movie</option>
+	      <option value="TV Show">TV Show</option>
+	    </select>
+        <input id="pageSize" name = "inp1" placeholder="Page Size"/>
+        <input id="pageNo" name = "inp2" placeholder="Page Number"/>
+        <button type="submit" style="position: absolute; top: 0%;left: 105%" class="btn btn-primary">Submit</button>
+    </div>
+    </form>
+    <div style="position: absolute; left: 40%;top: 50%">
+	    {% if error %}
+            <div class="alert alert-danger">
+			  <strong>Danger!</strong> {{ error }}
+			</div>
+        {% elif value %}
+	        <table>
+		        <tr>
+			        <th>Name</th>
+			        <th>Release Year</th>
+		        </tr>
+			{% for val in value %}
+			<tr>
+				<td><a href="{{ val['url'] }}">{{ val['name'] }}</a></td>
+				<td>{{ val['year'] }}</td>
+			</tr>
+			{% endfor %}
+			</table>
+        {% else %}
+            <p></p>
+        {% endif %}
+    </div>
+ 
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="height: 55vh;" class="jumbotron ui-widget">
+    <h2 style="text-align: center;padding: 20px;">Search Netflix based on any field!!</h2>
+	<div style="position:absolute; left: 34%;top: 30%">
+        <form id="form1" action="{{ url_for('customField')}}" method="POST" enctype="multipart/form-data">
+	    <select id="mySelect" name = "opt">
+	      <option value="type">type</option>
+	      <option value="title">title</option>
+	      <option value="director">director</option>
+	      <option value="cast">cast</option>
+	      <option value="country">country</option>
+	      <option value="date_added">date_added</option>
+	      <option value="release_year">release_year</option>
+	      <option value="rating">rating</option>
+	      <option value="duration">duration</option>
+	      <option value="listed_in">listed_in</option>
+	      <option value="description">description</option>
+	    </select>
+	    <input id="source" name = "inp"/>
+	    <button type="submit" style="position: absolute; top: 0%;left: 120%" class="btn btn-primary">Submit</button>
+        </form>
+        {% if error %}
+            <div style="position: absolute; left: 20%;top: 160%" class="alert alert-danger">
+			  <strong>Danger!</strong> {{ error }}
+			</div>
+        {% elif value %}
+			<div style="position: absolute; left: 20%;top: 160%">
+				<table style="border: 1px solid black;border-collapse: collapse;">
+		        <tr style="border: 1px solid black;border-collapse: collapse;">
+			        <th style="border: 1px solid black;border-collapse: collapse;">Title</th>
+			        <th style="border: 1px solid black;border-collapse: collapse;">{{ value[0]['option'] }}</th>
+		        </tr>
+			{% for val in value %}
+			<tr style="border: 1px solid black;border-collapse: collapse;">
+				<td style="border: 1px solid black;border-collapse: collapse;"><a href="{{ val['url'] }}">{{ val['name'] }}</a></td>
+				<td style="border: 1px solid black;border-collapse: collapse;">{{ val['optVal'] }}</td>
+			</tr>
+			{% endfor %}
+			</table>
+			</div>
+        {% else %}
+            <p></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="height: 55vh;" class="jumbotron ui-widget">
+    <h2 style="text-align: center;padding: 20px;">Search Netflix based on Description!</h2>
+    <h4 style="text-align: center;padding: 20px;">Don't worry!! Search a word you think is relevant to description!!</h4>
+    
+    <form action="{{ url_for('customPre')}}" method="post">
+    <div style="position:absolute; left: 40%;top: 40%">
+        <input id="source" name = "inp" placeholder="Prefix of Descr."/>
+        <button type="submit" style="position: absolute; top: 0%;left: 120%" class="btn btn-primary">Submit</button>
+    </div>
+    </form>
+    <div>
+        {% if error %}
+            <div style="position: absolute; left: 40%;top: 60%" class="alert alert-danger">
+			  <strong>Danger!</strong> {{ error }}
+			</div>
+        {% elif value %}
+	        <div style="position: absolute; left: 30%;top: 60%" class="content">
+		        <table>
+		        <tr>
+			        <th>Name</th>
+			        <th>Description</th>
+		        </tr>
+			{% for val in value %}
+			<tr>
+				<td><a href="{{ val['url'] }}">{{ val['name'] }}</a></td>
+				<td>{{ val['description'] }}</td>
+			</tr>
+			{% endfor %}
+			</table>
+	        </div>
+        {% else %}
+            <p></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
