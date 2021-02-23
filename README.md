@@ -10,6 +10,8 @@ Index the **netflixData.json** file using the command
 
 You can also use the command
 > curl -X PUT "http://localhost:9200/_bulk" -H 'Content-Type: application/json' --data-binary `@netflixData.json
+
+To test the status of Indexing you have done, go to http:localhost:9200/netflix/video/id where id is a number between 1 and 7787
 ## Step-4 :
 Run the files **api.py** and **app.py**
 ## Step-5 : 
