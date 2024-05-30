@@ -16,3 +16,6 @@ To test the status of Indexing you have done, go to http:localhost:9200/netflix/
 Run the files **api.py** and **app.py**
 ## Step-5 : 
 Go to http://localhost:5000
+
+## NOTE
+The working of the app can be found [here](https://github.com/nagendar-pm/NetflixAPI/blob/main/netflixAPI-Doc.pdf)
